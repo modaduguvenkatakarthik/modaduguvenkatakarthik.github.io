@@ -1,208 +1,466 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modadugu Venkata Karthik | Portfolio</title>
+<meta name="description" content="Modadugu Venkata Karthik — ECE, Embedded Systems, Robotics and Industrial Electronics portfolio.">
+<meta name="theme-color" content="#070a0f">
+<title>Modadugu Venkata Karthik | Embedded & Robotics</title>
 
 <style>
+:root{
+  --bg:#070a0f;
+  --bg2:#0b1018;
+  --panel:rgba(15,22,32,.72);
+  --panel2:#101923;
+  --text:#edf5ff;
+  --muted:#9eacbc;
+  --line:rgba(255,255,255,.09);
+  --accent:#49d7ff;
+  --accent2:#8b7cff;
+  --good:#67f0b1;
+  --shadow:0 20px 70px rgba(0,0,0,.35);
+  --radius:22px;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#f5f7fb;
-    color:#333;
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(73,215,255,.10),transparent 28%),
+    radial-gradient(circle at 85% 18%,rgba(139,124,255,.10),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
 }
-
-header{
-    background:#0b3d91;
-    color:white;
-    text-align:center;
-    padding:50px 20px;
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,black,transparent 80%);
 }
-
-header h1{
-    margin:0;
-    font-size:36px;
-}
-
-header p{
-    margin:8px 0;
-}
-
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
 nav{
-    background:white;
-    text-align:center;
-    padding:12px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  width:min(1100px,calc(100% - 28px));z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border:1px solid var(--line);border-radius:18px;
+  background:rgba(7,10,15,.72);backdrop-filter:blur(18px);
+  box-shadow:0 10px 35px rgba(0,0,0,.2);
 }
-
-nav a{
-    margin:0 15px;
-    text-decoration:none;
-    color:#0b3d91;
-    font-weight:bold;
+.brand{font-weight:800;letter-spacing:.2px}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:6px}
+.navlinks a{font-size:.9rem;color:var(--muted);padding:8px 11px;border-radius:10px}
+.navlinks a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.menu{display:none;border:1px solid var(--line);background:none;color:var(--text);border-radius:10px;padding:7px 10px}
+.hero{min-height:100vh;display:grid;place-items:center;padding:130px 0 80px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.eyebrow{
+  display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border:1px solid rgba(73,215,255,.22);
+  background:rgba(73,215,255,.06);border-radius:999px;color:#bdefff;font-size:.82rem
 }
-
-section{
-    max-width:1000px;
-    margin:auto;
-    padding:40px 20px;
+.dot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 14px var(--good)}
+h1{font-size:clamp(3rem,7vw,6.2rem);line-height:.98;margin:20px 0 18px;letter-spacing:-.055em}
+.gradient{background:linear-gradient(110deg,#fff 10%,var(--accent) 55%,#9e91ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:1.12rem;color:var(--muted);max-width:680px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 17px;border-radius:13px;border:1px solid var(--line);font-weight:700;
+  transition:.25s transform,.25s background,.25s border-color
 }
-
-h2{
-    color:#0b3d91;
+.btn:hover{transform:translateY(-2px);border-color:rgba(73,215,255,.4)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),#4e9dff);color:#031017;border:0}
+.btn.ghost{background:rgba(255,255,255,.035)}
+.hero-card{
+  min-height:440px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,rgba(17,26,38,.88),rgba(8,12,18,.75));
+  box-shadow:var(--shadow);position:relative;overflow:hidden;padding:28px
 }
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:8px;
-    margin-top:15px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.08);
+.hero-card:before{
+  content:"";position:absolute;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(73,215,255,.18),transparent 65%);right:-90px;top:-90px
 }
-
-.skills{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:10px;
+.terminal{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#080d13}
+.term-top{display:flex;gap:7px;padding:12px;border-bottom:1px solid var(--line)}
+.term-top i{width:9px;height:9px;border-radius:50%;background:#5f6b79}
+.term-body{padding:22px;font:13px/2.05 ui-monospace,SFMono-Regular,Menlo,monospace;color:#b7c7d8}
+.cyan{color:var(--accent)} .purple{color:#a89dff} .green{color:var(--good)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.stat{padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}
+.stat strong{display:block;font-size:1.35rem}.stat span{color:var(--muted);font-size:.75rem}
+section{padding:105px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+.kicker{color:var(--accent);font:700 .75rem ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;margin:8px 0}
+.lead{color:var(--muted);max-width:700px}
+.panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow);backdrop-filter:blur(12px)
 }
-
-.skill{
-    background:#eef2ff;
-    padding:10px;
-    border-radius:6px;
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}
+.timeline{display:grid;gap:14px}
+.timeline-item{position:relative;padding:18px 18px 18px 22px;border-left:2px solid rgba(73,215,255,.3);background:rgba(255,255,255,.025);border-radius:0 15px 15px 0}
+.timeline-item h3{margin:0 0 4px}.timeline-item small{color:var(--accent)}.timeline-item p{color:var(--muted);margin:8px 0 0}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.skill{padding:17px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);transition:.25s transform,.25s border-color}
+.skill:hover{transform:translateY(-3px);border-color:rgba(73,215,255,.3)}
+.skill b{display:block;margin-bottom:5px}.skill span{color:var(--muted);font-size:.9rem}
+.level{margin-top:10px;height:5px;background:#1b2633;border-radius:99px;overflow:hidden}.level i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:inherit}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.filter{cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);padding:8px 12px;border-radius:999px}
+.filter.active,.filter:hover{color:var(--text);border-color:rgba(73,215,255,.35);background:rgba(73,215,255,.08)}
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.project{
+  display:flex;flex-direction:column;min-height:310px;border:1px solid var(--line);border-radius:20px;
+  background:linear-gradient(160deg,rgba(17,26,38,.82),rgba(9,13,19,.72));overflow:hidden;
+  transition:.3s transform,.3s border-color,.3s box-shadow
 }
-
-footer{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:25px;
-    margin-top:30px;
+.project:hover{transform:translateY(-6px);border-color:rgba(73,215,255,.35);box-shadow:0 25px 60px rgba(0,0,0,.35)}
+.project-art{height:105px;padding:18px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(73,215,255,.10),rgba(139,124,255,.08));border-bottom:1px solid var(--line)}
+.icon{font-size:2.2rem}.tag{font-size:.72rem;color:#bfefff;border:1px solid rgba(73,215,255,.2);padding:5px 8px;border-radius:999px}
+.project-body{padding:19px;display:flex;flex-direction:column;flex:1}.project h3{margin:0 0 7px}.project p{margin:0;color:var(--muted);font-size:.9rem}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}.chip{font-size:.7rem;color:#aebccc;background:rgba(255,255,255,.05);padding:5px 7px;border-radius:7px}.project-actions{display:flex;gap:8px;margin-top:auto;padding-top:17px}.mini{font-size:.78rem;padding:8px 10px}
+.search{
+  width:100%;padding:13px 15px;border-radius:13px;border:1px solid var(--line);
+  background:rgba(255,255,255,.035);color:var(--text);outline:none
+}.search:focus{border-color:rgba(73,215,255,.45)}
+.git-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.repo{padding:19px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.025)}.repo h3{margin:0 0 5px}.repo p{color:var(--muted);font-size:.88rem;margin:0 0 12px}.repo-meta{display:flex;gap:10px;color:#aebccc;font-size:.75rem}.repo a{color:var(--accent)}
+.experience{display:grid;grid-template-columns:.7fr 1.3fr;gap:20px}.badge{display:inline-block;color:var(--good);border:1px solid rgba(103,240,177,.2);background:rgba(103,240,177,.06);padding:6px 9px;border-radius:999px;font-size:.75rem}
+.resume{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contact-card{padding:20px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.025)}.contact-card small{display:block;color:var(--muted);margin-bottom:5px}
+footer{padding:40px 0 60px;color:var(--muted);border-top:1px solid var(--line)}
+.reveal{opacity:0;transform:translateY(22px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+#top{position:fixed;right:20px;bottom:20px;z-index:40;width:43px;height:43px;border-radius:50%;border:1px solid var(--line);background:rgba(10,15,22,.8);color:var(--text);cursor:pointer;display:none}
+#top.show{display:block}
+@media(max-width:900px){
+  .hero-grid,.about-grid,.experience{grid-template-columns:1fr}
+  .project-grid{grid-template-columns:repeat(2,1fr)}
+  .skills{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .container{width:min(var(--max),calc(100% - 26px))}
+  nav{top:8px}.navlinks{display:none;position:absolute;top:58px;left:0;right:0;flex-direction:column;padding:10px;background:rgba(7,10,15,.95);border:1px solid var(--line);border-radius:14px}.navlinks.open{display:flex}.menu{display:block}
+  .hero{padding-top:120px}.hero-card{min-height:350px}.stats{grid-template-columns:1fr}
+  .project-grid,.skills,.git-grid,.contact-grid{grid-template-columns:1fr}
+  section{padding:75px 0}.section-head{display:block}.resume{grid-template-columns:1fr}
+  h1{font-size:clamp(2.8rem,15vw,4.8rem)}
 }
 </style>
 </head>
 
 <body>
-
-<header>
-<h1>Modadugu Venkata Karthik</h1>
-<p>Diploma Student – Electronics & Communication Engineering</p>
-<p>IoT | Embedded Systems | Robotics</p>
-<p>Kakinada, Andhra Pradesh</p>
-</header>
-
 <nav>
-<a href="#about">About</a>
-<a href="#projects">Projects</a>
-<a href="#skills">Skills</a>
-<a href="#education">Education</a>
-<a href="#workshops">Workshops</a>
-<a href="#strengths">Strengths</a>
-<a href="#contact">Contact</a>
+  <a class="brand" href="#home">MVK<span>.</span></a>
+  <div class="navlinks" id="navlinks">
+    <a href="#about">About</a>
+    <a href="#experience">Internship</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="menu" id="menu" aria-label="Open menu">☰</button>
 </nav>
 
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <span class="eyebrow"><i class="dot"></i> ECE • Embedded • Robotics</span>
+      <h1>Modadugu<br><span class="gradient">Venkata Karthik</span></h1>
+      <p>Diploma student in Electronics & Communication Engineering focused on embedded systems, electronics hardware, robotics, industrial electronics and AI-assisted digital development.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">Explore Projects ↗</a>
+        <a class="btn ghost" href="https://github.com/modaduguvenkatakarthik" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/modaduguvenkatakarthik" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <div class="terminal">
+        <div class="term-top"><i></i><i></i><i></i></div>
+        <div class="term-body">
+          <div><span class="purple">const</span> profile = {</div>
+          <div>&nbsp;&nbsp;name: <span class="cyan">"Karthik"</span>,</div>
+          <div>&nbsp;&nbsp;focus: <span class="cyan">"Embedded & Robotics"</span>,</div>
+          <div>&nbsp;&nbsp;role: <span class="cyan">"Robotics Intern"</span>,</div>
+          <div>&nbsp;&nbsp;location: <span class="cyan">"Kakinada, India"</span>,</div>
+          <div>&nbsp;&nbsp;status: <span class="green">"Building & Learning"</span></div>
+          <div>};</div>
+          <br>
+          <div><span class="green">→</span> sensors + controllers + communication</div>
+          <div><span class="green">→</span> hardware testing + troubleshooting</div>
+          <div><span class="green">→</span> robotics simulation basics</div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>ECE</strong><span>Diploma</span></div>
+        <div class="stat"><strong>8.0</strong><span>CGPA</span></div>
+        <div class="stat"><strong>2026</strong><span>Robotics Intern</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="about">
-<h2>About Me</h2>
-<div class="card">
-<p>
-I am a Diploma student in Electronics and Communication Engineering at Andhra Polytechnic College, Kakinada (2024–2027).
-I am interested in IoT systems, embedded electronics, robotics and microcontroller programming.
-I enjoy designing electronic circuits and building innovative hardware projects.
-</p>
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">01 / Profile</div><h2>Building with electronics.</h2></div></div>
+  <div class="about-grid">
+    <div class="panel reveal">
+      <p class="lead">I am an Electronics & Communication Engineering diploma student at Andhra Polytechnic, Kakinada. My hands-on work spans microcontrollers, sensors, motor control, communication protocols, hardware integration and robotics.</p>
+      <p class="lead">I enjoy turning circuit-level ideas into working systems and learning through practical projects, testing and debugging.</p>
+      <div class="chips">
+        <span class="chip">Embedded Systems</span><span class="chip">Industrial Electronics</span><span class="chip">Robotics</span><span class="chip">IoT</span><span class="chip">CAN</span><span class="chip">Sensors</span>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="kicker">Engineering Journey</div>
+      <div class="timeline" style="margin-top:15px">
+        <div class="timeline-item"><small>2024 → 2027</small><h3>Diploma ECE</h3><p>Andhra Polytechnic, Kakinada</p></div>
+        <div class="timeline-item"><small>May 2026 → Present</small><h3>Robotics Internship</h3><p>Bhairav Robotics, Kakinada</p></div>
+        <div class="timeline-item"><small>Current</small><h3>Embedded + Robotics Learning</h3><p>Hardware, communication, ROS 2 basics and project development.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="experience">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">02 / Experience</div><h2>Robotics Internship</h2></div><span class="badge">May 2026 — Present</span></div>
+  <div class="experience">
+    <div class="panel reveal">
+      <div class="kicker">Bhairav Robotics</div>
+      <h3 style="font-size:1.7rem;margin:8px 0">Robotics Intern</h3>
+      <p class="lead">Kakinada, Andhra Pradesh</p>
+    </div>
+    <div class="panel reveal">
+      <p>Hands-on exposure to electronics hardware integration, embedded systems, sensors, actuators and motor-control systems.</p>
+      <div class="chips">
+        <span class="chip">UART</span><span class="chip">I²C</span><span class="chip">SPI</span><span class="chip">CAN</span>
+        <span class="chip">GPS</span><span class="chip">IMU</span><span class="chip">Encoders</span><span class="chip">Battery Monitoring</span>
+        <span class="chip">Hardware Testing</span><span class="chip">Troubleshooting</span>
+        <span class="chip">ROS 2 Basic</span><span class="chip">Gazebo Basic</span><span class="chip">SLAM Basic</span><span class="chip">Nav2 Basic</span>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
 <section id="projects">
-<h2>Projects</h2>
+<div class="container">
+  <div class="section-head reveal">
+    <div><div class="kicker">03 / Work</div><h2>Projects & Experiments</h2><p class="lead">Featured hardware projects plus AI-assisted web, mobile and UI/UX concepts.</p></div>
+  </div>
+  <input class="search reveal" id="projectSearch" placeholder="Search projects or technologies…">
+  <div class="filters reveal" id="filters">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="embedded">Embedded</button>
+    <button class="filter" data-filter="robotics">Robotics</button>
+    <button class="filter" data-filter="can">CAN</button>
+    <button class="filter" data-filter="iot">IoT</button>
+    <button class="filter" data-filter="ros">ROS 2</button>
+    <button class="filter" data-filter="ai">AI / Web / App</button>
+  </div>
+  <div class="project-grid" id="projectGrid">
 
-<div class="card">
-<h3>Smart Home Automation (VC-02)</h3>
-<p>
-Voice-controlled home automation system using VC-02 voice recognition module and relay circuits
-to control electrical appliances using voice commands.
-</p>
+    <article class="project reveal" data-cat="embedded" data-search="smart home automation VC02 embedded electronics voice">
+      <div class="project-art"><span class="icon">🏠</span><span class="tag">EMBEDDED</span></div>
+      <div class="project-body"><h3>Smart Home Automation</h3><p>Voice-controlled home automation concept using the VC-02 module and electronic control circuits.</p><div class="chips"><span class="chip">VC-02</span><span class="chip">Embedded</span><span class="chip">Electronics</span></div><div class="project-actions"><a class="btn ghost mini" href="https://github.com/modaduguvenkatakarthik" target="_blank">GitHub ↗</a></div></div>
+    </article>
+
+    <article class="project reveal" data-cat="can embedded" data-search="CAN communication Arduino Nano MCP2515 ESP32 SN65HVD230">
+      <div class="project-art"><span class="icon">🔗</span><span class="tag">CAN</span></div>
+      <div class="project-body"><h3>CAN Communication System</h3><p>Transmitter/receiver setup using Arduino Nano, MCP2515, ESP32 and SN65HVD230 for embedded communication.</p><div class="chips"><span class="chip">Arduino Nano</span><span class="chip">MCP2515</span><span class="chip">ESP32</span><span class="chip">CAN</span></div><div class="project-actions"><a class="btn ghost mini" href="https://github.com/modaduguvenkatakarthik" target="_blank">GitHub ↗</a></div></div>
+    </article>
+
+    <article class="project reveal" data-cat="embedded" data-search="IMU GPS Teensy 4.1 UART TTL sensor acquisition">
+      <div class="project-art"><span class="icon">🛰️</span><span class="tag">SENSORS</span></div>
+      <div class="project-body"><h3>IMU + GPS Embedded System</h3><p>Teensy 4.1 based sensor data-acquisition setup combining IMU, GPS and UART TTL communication.</p><div class="chips"><span class="chip">Teensy 4.1</span><span class="chip">IMU</span><span class="chip">GPS</span><span class="chip">UART</span></div><div class="project-actions"><a class="btn ghost mini" href="https://github.com/modaduguvenkatakarthik" target="_blank">GitHub ↗</a></div></div>
+    </article>
+
+    <article class="project reveal" data-cat="robotics embedded" data-search="4WD joystick robot ESP32 IBT-2 motor control">
+      <div class="project-art"><span class="icon">🤖</span><span class="tag">ROBOTICS</span></div>
+      <div class="project-body"><h3>4WD Joystick-Controlled Robot</h3><p>ESP32-based joystick control system translating user input into motor-control commands.</p><div class="chips"><span class="chip">ESP32</span><span class="chip">IBT-2</span><span class="chip">DC Motors</span></div><div class="project-actions"><a class="btn ghost mini" href="https://github.com/modaduguvenkatakarthik" target="_blank">GitHub ↗</a></div></div>
+    </article>
+
+    <article class="project reveal" data-cat="iot embedded" data-search="IoT attendance RFID ESP8266 RC522 Blynk">
+      <div class="project-art"><span class="icon">📡</span><span class="tag">IOT</span></div>
+      <div class="project-body"><h3>IoT Attendance System</h3><p>RFID-based attendance prototype integrating RC522 with ESP8266 NodeMCU and an IoT interface.</p><div class="chips"><span class="chip">ESP8266</span><span class="chip">RC522</span><span class="chip">Blynk</span></div><div class="project-actions"><a class="btn ghost mini" href="https://github.com/modaduguvenkatakarthik" target="_blank">GitHub ↗</a></div></div>
+    </article>
+
+    <article class="project reveal" data-cat="ai" data-search="AI website design portfolio web UI UX">
+      <div class="project-art"><span class="icon">🌐</span><span class="tag">AI / WEB</span></div>
+      <div class="project-body"><h3>AI-Assisted Website Design</h3><p>Web design and development experiments using AI-assisted tools for layouts, UI ideas, components and code refinement.</p><div class="chips"><span class="chip">AI Tools</span><span class="chip">Web</span><span class="chip">UI/UX</span></div><div class="project-actions"><a class="btn ghost mini" href="#contact">Discuss ↗</a></div></div>
+    </article>
+
+    <article class="project reveal" data-cat="ai" data-search="AI mobile app design UI UX prototype">
+      <div class="project-art"><span class="icon">📱</span><span class="tag">AI / APP</span></div>
+      <div class="project-body"><h3>AI-Assisted Mobile App Design</h3><p>Mobile UI/UX concepts and application prototypes developed with AI-assisted design and development workflows.</p><div class="chips"><span class="chip">AI Tools</span><span class="chip">Mobile UI</span><span class="chip">UX</span></div><div class="project-actions"><a class="btn ghost mini" href="#contact">Discuss ↗</a></div></div>
+    </article>
+
+    <article class="project reveal" data-cat="ros robotics" data-search="ROS 2 Gazebo SLAM Nav2 RViz robotics basic">
+      <div class="project-art"><span class="icon">🧭</span><span class="tag">BASIC</span></div>
+      <div class="project-body"><h3>ROS 2 Robotics Simulation</h3><p>Learning and simulation work with ROS 2, Gazebo, SLAM, RViz and Nav2 at a basic level.</p><div class="chips"><span class="chip">ROS 2 Basic</span><span class="chip">Gazebo Basic</span><span class="chip">SLAM Basic</span><span class="chip">Nav2 Basic</span></div><div class="project-actions"><a class="btn ghost mini" href="#skills">Skills ↗</a></div></div>
+    </article>
+
+  </div>
 </div>
+</section>
 
-<div class="card">
-<h3>Clap to Spot (555 Timer)</h3>
-<p>
-Sound activated electronic circuit using microphone sensor and 555 timer IC to trigger a buzzer
-and help locate misplaced objects.
-</p>
+<section id="github">
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">04 / Open Source</div><h2>GitHub Projects</h2><p class="lead">Public repositories are loaded directly from GitHub when the page is opened.</p></div><a class="btn ghost" href="https://github.com/modaduguvenkatakarthik" target="_blank">Open GitHub ↗</a></div>
+  <div class="git-grid" id="repoGrid"><div class="panel">Loading public repositories…</div></div>
 </div>
-
 </section>
 
 <section id="skills">
-<h2>Technical Skills</h2>
-
-<div class="skills">
-<div class="skill">C Programming</div>
-<div class="skill">Verilog HDL</div>
-<div class="skill">8051 Microcontroller</div>
-<div class="skill">ESP8266</div>
-<div class="skill">Circuit Design</div>
-<div class="skill">PCB Layout Basics</div>
-<div class="skill">Keil uVision</div>
-<div class="skill">Proteus</div>
-<div class="skill">MATLAB</div>
-<div class="skill">Xilinx Project Navigator</div>
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">05 / Toolkit</div><h2>Technical Skills</h2><p class="lead">Practical skills and exposure, with robotics tools clearly marked as basic.</p></div></div>
+  <div class="skills">
+    <div class="skill reveal"><b>Programming / HDL</b><span>C • C++ • Arduino Programming • Verilog HDL</span><div class="level"><i style="width:82%"></i></div></div>
+    <div class="skill reveal"><b>Microcontrollers</b><span>Arduino • ESP32 • ESP8266 • STM32 • Teensy 4.1 • 8051</span><div class="level"><i style="width:86%"></i></div></div>
+    <div class="skill reveal"><b>Communication</b><span>UART • I²C • SPI • CAN • ADC/DAC</span><div class="level"><i style="width:84%"></i></div></div>
+    <div class="skill reveal"><b>Sensors & Hardware</b><span>IMU • GPS • Encoders • Sensors • Actuators • Motor Control</span><div class="level"><i style="width:82%"></i></div></div>
+    <div class="skill reveal"><b>PCB / Circuit Design</b><span>PCB Design • EasyEDA • Proteus • Electronic Hardware</span><div class="level"><i style="width:75%"></i></div></div>
+    <div class="skill reveal"><b>Robotics — Basic</b><span>ROS 2 • Gazebo • SLAM • RViz • Nav2 • Navigation</span><div class="level"><i style="width:40%"></i></div></div>
+    <div class="skill reveal"><b>Engineering Tools</b><span>Arduino IDE • Keil uVision • MATLAB • Blynk • Ubuntu/Linux</span><div class="level"><i style="width:74%"></i></div></div>
+    <div class="skill reveal"><b>AI-Assisted Development</b><span>AI-assisted website design • app UI/UX • prototyping • code refinement</span><div class="level"><i style="width:55%"></i></div></div>
+    <div class="skill reveal"><b>Hardware Exposure</b><span>MPU6050 • AS5600 • L3G • LSM303 • GPS • MCP4728 • Daly BMS</span><div class="level"><i style="width:76%"></i></div></div>
+  </div>
 </div>
-
 </section>
 
 <section id="education">
-<h2>Education</h2>
-<div class="card">
-<p><b>Diploma in Electronics and Communication Engineering</b><br>
-Andhra Polytechnic College, Kakinada<br>
-2024 – 2027</p>
-
-<p><b>10th Class</b><br>
-NRI Indian Springs EM School<br>
-Score: 85%</p>
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">06 / Education</div><h2>Education & Activities</h2></div></div>
+  <div class="about-grid">
+    <div class="panel reveal">
+      <div class="kicker">2024 — 2027</div>
+      <h3>Diploma in Electronics & Communication Engineering</h3>
+      <p>Andhra Polytechnic, Kakinada</p>
+      <p><strong>CGPA: 8.0</strong></p>
+      <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+      <div class="kicker">SSC</div>
+      <h3>NRI Indian Springs EM School, Tenali</h3>
+      <p><strong>85%</strong></p>
+    </div>
+    <div class="panel reveal">
+      <div class="kicker">Workshops / Activities</div>
+      <div class="chips" style="margin-top:15px">
+        <span class="chip">Drone Technology Workshop</span>
+        <span class="chip">AI & ML Workshop</span>
+        <span class="chip">Regional Polytechnic Technical Fest</span>
+      </div>
+      <div style="margin-top:30px">
+        <div class="kicker">Areas of Interest</div>
+        <p class="lead">Automotive Electronics • Industrial Automation • Embedded Systems • Production & Manufacturing • Testing & Maintenance • Motor Control • CAN • Sensors & Instrumentation</p>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
 
-<section id="workshops">
-<h2>Workshops & Certifications</h2>
-<div class="card">
-<ul>
-<li>Drone Technology Workshop</li>
-<li>Artificial Intelligence & Machine Learning Workshop</li>
-<li>Regional Polytechnic Technical Fest Participation</li>
-</ul>
-</div>
-</section>
-
-<section id="strengths">
-<h2>Strengths</h2>
-<div class="card">
-<ul>
-<li>Problem Solving</li>
-<li>Hardware Troubleshooting</li>
-<li>Quick Learner</li>
-<li>Teamwork</li>
-<li>Communication Skills</li>
-</ul>
+<section id="resume">
+<div class="container">
+  <div class="panel resume reveal">
+    <div><div class="kicker">07 / Resume</div><h2 style="font-size:2rem">Want the full profile?</h2><p class="lead">Add your latest resume file to the repository as <strong>resume.pdf</strong> and this button will open it.</p></div>
+    <a class="btn primary" href="resume.pdf" target="_blank">View Resume ↗</a>
+  </div>
 </div>
 </section>
 
 <section id="contact">
-<h2>Contact</h2>
-<div class="card">
-<p>Email: modaduguvenkatakarthik@gmail.com</p>
-<p>Phone: 7780111614</p>
-<p>LinkedIn: <a href="https://www.linkedin.com/in/modaduguvenkatakarthik">
-linkedin.com/in/modaduguvenkatakarthik</a></p>
+<div class="container">
+  <div class="section-head reveal"><div><div class="kicker">08 / Contact</div><h2>Let's build something.</h2><p class="lead">For projects, internships, collaboration or engineering opportunities.</p></div></div>
+  <div class="contact-grid">
+    <a class="contact-card reveal" href="mailto:modaduguvenkatakarthik@gmail.com"><small>Email</small><strong>modaduguvenkatakarthik@gmail.com</strong></a>
+    <a class="contact-card reveal" href="tel:+917780111614"><small>Phone</small><strong>+91 77801 11614</strong></a>
+    <a class="contact-card reveal" href="https://www.linkedin.com/in/modaduguvenkatakarthik" target="_blank"><small>LinkedIn</small><strong>linkedin.com/in/modaduguvenkatakarthik ↗</strong></a>
+    <a class="contact-card reveal" href="https://github.com/modaduguvenkatakarthik" target="_blank"><small>GitHub</small><strong>github.com/modaduguvenkatakarthik ↗</strong></a>
+  </div>
 </div>
 </section>
+</main>
 
 <footer>
-<p>© 2026 Modadugu Venkata Karthik | Portfolio</p>
+<div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
+  <span>© 2026 Modadugu Venkata Karthik</span>
+  <span>Embedded • Robotics • Industrial Electronics</span>
+</div>
 </footer>
 
+<button id="top" aria-label="Back to top">↑</button>
+
+<script>
+const menu=document.getElementById('menu');
+const nav=document.getElementById('navlinks');
+menu.addEventListener('click',()=>nav.classList.toggle('open'));
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const buttons=[...document.querySelectorAll('.filter')];
+const cards=[...document.querySelectorAll('.project')];
+const search=document.getElementById('projectSearch');
+let active='all';
+function applyFilter(){
+  const q=search.value.toLowerCase().trim();
+  cards.forEach(card=>{
+    const cats=card.dataset.cat.split(' ');
+    const text=card.dataset.search.toLowerCase();
+    const okCat=active==='all'||cats.includes(active);
+    const okSearch=!q||text.includes(q);
+    card.style.display=okCat&&okSearch?'flex':'none';
+  });
+}
+buttons.forEach(b=>b.addEventListener('click',()=>{
+  buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  active=b.dataset.filter;applyFilter();
+}));
+search.addEventListener('input',applyFilter);
+
+const topBtn=document.getElementById('top');
+window.addEventListener('scroll',()=>topBtn.classList.toggle('show',scrollY>500));
+topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+async function loadRepos(){
+  const grid=document.getElementById('repoGrid');
+  try{
+    const res=await fetch('https://api.github.com/users/modaduguvenkatakarthik/repos?sort=updated&per_page=12');
+    if(!res.ok) throw new Error('GitHub API unavailable');
+    const repos=await res.json();
+    grid.innerHTML='';
+    if(!repos.length){grid.innerHTML='<div class="panel">No public repositories found.</div>';return}
+    repos.forEach(r=>{
+      const el=document.createElement('div');
+      el.className='repo reveal show';
+      el.innerHTML=`
+        <h3>${escapeHtml(r.name)}</h3>
+        <p>${escapeHtml(r.description||'No description provided yet.')}</p>
+        <div class="repo-meta">
+          <span>${escapeHtml(r.language||'Code')}</span>
+          <span>★ ${r.stargazers_count}</span>
+          <span>⑂ ${r.forks_count}</span>
+          <a href="${r.html_url}" target="_blank" rel="noopener">Repository ↗</a>
+        </div>`;
+      grid.appendChild(el);
+    });
+  }catch(e){
+    grid.innerHTML='<div class="panel">GitHub repositories could not be loaded right now. <a style="color:var(--accent)" href="https://github.com/modaduguvenkatakarthik" target="_blank">Open GitHub ↗</a></div>';
+  }
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+loadRepos();
+</script>
 </body>
 </html>
